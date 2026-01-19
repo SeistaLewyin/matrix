@@ -1,7 +1,7 @@
 #include<stdio.h>
 int main()
 {
-    int i, j;
+    int i, j, k, sum;
     int m_1[2], m_2[2];
     printf("Enter the order of the first matrix: \n");
     printf("Row: ");
@@ -14,7 +14,7 @@ int main()
     printf("Column: ");
     scanf("%d", &m_2[1]);
     int matA[m_1[0]][m_1[1]], matB[m_2[0]][m_2[1]];
-    if(m_1[0]==m_2[0] && m_1[1]==m_2[1])
+    if(m_1[1]==m_2[0])
     {
         printf("Enter Matrix A:\n");
     for(i=0; i<m_1[0]; i++)
@@ -56,18 +56,25 @@ int main()
         }
         printf(" |\n");
     }
-    printf("\n Matrix C {Matrix A - Matrix B}:\n");
+    printf("\n Matrix C {Matrix A * Matrix B}:\n");
     printf("\n");
-    for(i=0; i<m_2[0]; i++)
+    for(i=0; i<m_1[0]; i++)
     {
         printf("| ");
         for(j=0; j<m_2[1]; j++)
         {
-            printf(" %d  ", matA[i][j]-matB[i][j]);
+            sum=0;
+            for(k=0; k<m_1[1]; k++)
+            {
+               sum = (matA[i][k]*matB[k][j]) + sum;
+            }
+            printf(" %d  ", sum);
         }
         printf(" |\n");
     }
-    }else{
-    printf("Dimension mismatched");
+    }
+    else
+    {
+       printf("Dimension mismatched");
     }
 }
